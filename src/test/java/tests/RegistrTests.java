@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrTests {
 
@@ -16,6 +15,7 @@ public class RegistrTests {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.holdBrowserOpen = true;
         Configuration.browserSize = "1920x1080";
+
     }
     @Test
     void successfulRegistrationTest(){
@@ -23,6 +23,8 @@ public class RegistrTests {
 
         open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('#footer').remove()");
 
         $("#firstName").setValue(userName);
         $("#lastName").setValue("Egorich");
@@ -39,8 +41,15 @@ public class RegistrTests {
         $(".react-datepicker__month-select").selectOption("January");
         $(".react-datepicker__year-select").selectOption("2007");
         $(".react-datepicker__day--030:not(.react-datepicker__day--outside-month)").click();
+        $("#subjectsInput").setValue("Math").pressEnter();
+        $("#hobbiesWrapper").$(byText("Music")).click();
+        $("#uploadPicture").uploadFromClasspath("img/2.png");
 
         $("#currentAddress").setValue("Some address");
+        $("#state").click();
+        $("#stateCity-wrapper").$(byText("NCR")).click();
+        $("#city").click();
+        $("#stateCity-wrapper").$(byText("Delhi")).click();
         $("#submit").click();
     }
 }
