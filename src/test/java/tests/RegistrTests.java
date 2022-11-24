@@ -15,13 +15,14 @@ public class RegistrTests {
     static void beforeAll(){
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
-        Configuration.holdBrowserOpen = true;
+//        Configuration.holdBrowserOpen = true;
 
 
     }
     @Test
     void successfulRegistrationTest(){
         String userName = "Alex";
+        String lastName = "Fadeev";
 
         open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
@@ -29,25 +30,26 @@ public class RegistrTests {
         executeJavaScript("$('footer').remove()");
 
         $("#firstName").setValue(userName);
-        $("#lastName").setValue("Egorich");
-        $("#userEmail").setValue("Egor@egor.com");
-//        $("#gender-radio-1").click();//wrong
-//        $("#gender-radio-2").parent().click();
-        $("#genterWrapper").$(byText("Other")).click();
+        $("#lastName").setValue(lastName);
+        $("#userEmail").setValue("Alexs@mail.ru");
+//
+        $("#genterWrapper").$(byText("Male")).click();
 
         $("#userNumber").setValue("8926012345");
+
         $("#dateOfBirthInput").click();
-
-
-
         $(".react-datepicker__month-select").selectOption("January");
         $(".react-datepicker__year-select").selectOption("2007");
         $(".react-datepicker__day--030:not(.react-datepicker__day--outside-month)").click();
+
         $("#subjectsInput").setValue("Math").pressEnter();
+
         $("#hobbiesWrapper").$(byText("Music")).click();
+
         $("#uploadPicture").uploadFromClasspath("img/2.png");
 
-        $("#currentAddress").setValue("Some address");
+        $("#currentAddress").setValue("Baker Street");
+
         $("#state").click();
         $("#stateCity-wrapper").$(byText("NCR")).click();
         $("#city").click();
@@ -56,6 +58,7 @@ public class RegistrTests {
 
         $(".modal-dialog").should(appear);
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".table-responsive").shouldHave(text(userName), text("Egorich"), text("Egor@egor.com"), text("8926012345"));
+        $(".table-responsive").shouldHave(text(userName), text(userName), text("Alexs@mail.ru"), text("8926012345"));
+        $("#closeLargeModal").click();
     }
 }
