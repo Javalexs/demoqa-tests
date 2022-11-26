@@ -9,17 +9,8 @@ import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+public class RegistrTestswithpageobjectsforlesson5 extends TestBase {
 
-public class RegistrTestswithpageobjectsforlesson5 {
-    RegistrationPage registrationPage = new RegistrationPage();
-    @BeforeAll
-    static void beforeAll(){
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
-//        Configuration.holdBrowserOpen = true;
-
-
-    }
     @Test
     void successfulRegistrationTest(){
         String userName = "Alex";
@@ -29,22 +20,12 @@ public class RegistrTestswithpageobjectsforlesson5 {
         String nPhone = "8926012345";
 
         registrationPage.openPage()
-                    .setFirstName(userName, lastName);
-        new RegistrationPage().setEmail(eMail);
-        new RegistrationPage().setGender(gEnder);
+                    .setFirstName(userName, lastName)
+                    .setEmail(eMail)
+                    .setGender(gEnder)
+                    .setPhone(nPhone)
+                    .setbirthDate("30", "January", "2007")
 
-
-
-
-//
-
-
-        $("#userNumber").setValue("8926012345");
-
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption("January");
-        $(".react-datepicker__year-select").selectOption("2007");
-        $(".react-datepicker__day--030:not(.react-datepicker__day--outside-month)").click();
 
         $("#subjectsInput").setValue("Math").pressEnter();
 
@@ -60,9 +41,15 @@ public class RegistrTestswithpageobjectsforlesson5 {
         $("#stateCity-wrapper").$(byText("Gurgaon")).click();
         $("#submit").click();
 
-        $(".modal-dialog").should(appear);
-        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".table-responsive").shouldHave(text(userName), text(userName), text("Alexs@mail.ru"), text("8926012345"));
+        registrationPage.verifyResultsModelAppears()
+                .verifyResult("Student name", userName + lastName)
+                .verifyResult("Student Email", eMail)
+                .verifyResult("Gender", gEnder)
+                .verifyResult("Mobile", nPhone)
+                .verifyResult("Date of Birth", "30 January,2007");
+
+
+//        $(".table-responsive").shouldHave(text(userName), text(userName), text("Alexs@mail.ru"), text("8926012345"));
         $("#closeLargeModal").click();
     }
 }
