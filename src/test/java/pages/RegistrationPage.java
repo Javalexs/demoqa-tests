@@ -26,11 +26,16 @@ public class RegistrationPage {
 
     }
 
-    public RegistrationPage setFirstName(String name, String surname){
+    public RegistrationPage setFirstName(String name){
         firstNameInput.setValue(name);
+        return this;
+    }
+
+    public RegistrationPage setLastName(String surname) {
         lastNameInput.setValue(surname);
         return this;
     }
+
     public RegistrationPage setEmail(String value){
         $("#userEmail").setValue(value);
         return this;
@@ -60,5 +65,5 @@ public class RegistrationPage {
         return this;
     }
 
-//    $("#dateOfBirthInput").click();
+
 }
