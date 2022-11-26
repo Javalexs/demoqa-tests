@@ -3,6 +3,7 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
@@ -10,7 +11,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrTestswithpageobjectsforlesson5 {
-
+    RegistrationPage registrationPage = new RegistrationPage();
     @BeforeAll
     static void beforeAll(){
         Configuration.baseUrl = "https://demoqa.com";
@@ -23,17 +24,20 @@ public class RegistrTestswithpageobjectsforlesson5 {
     void successfulRegistrationTest(){
         String userName = "Alex";
         String lastName = "Fadeev";
+        String eMail = "Alexs@mail.ru";
+        String gEnder = "Male";
+        String nPhone = "8926012345";
 
-        open("/automation-practice-form");
-        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
+        registrationPage.openPage()
+                    .setFirstName(userName, lastName);
+        new RegistrationPage().setEmail(eMail);
+        new RegistrationPage().setGender(gEnder);
 
-        $("#firstName").setValue(userName);
-        $("#lastName").setValue(lastName);
-        $("#userEmail").setValue("Alexs@mail.ru");
+
+
+
 //
-        $("#genterWrapper").$(byText("Male")).click();
+
 
         $("#userNumber").setValue("8926012345");
 
