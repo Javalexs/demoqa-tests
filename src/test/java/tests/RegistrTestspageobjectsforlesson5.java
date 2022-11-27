@@ -40,8 +40,12 @@ public class RegistrTestspageobjectsforlesson5 extends TestBase {
                 .verifyResult("Student Email", email)
                 .verifyResult("Gender", gender)
                 .verifyResult("Mobile", phone)
-                .verifyResult("Date of Birth", "30 January,2007");
-
+                .verifyResult("Date of Birth", day + " " + month + "," + year)
+                .verifyResult("Subjects", sub)
+                .verifyResult("Hobbies", hob)
+                .verifyResult("Picture", image.substring(4))
+                .verifyResult("Address", add )
+                .verifyResult("State and City", state + " " + city);
 
 
     }
