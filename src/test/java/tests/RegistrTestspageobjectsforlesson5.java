@@ -10,38 +10,36 @@ public class RegistrTestspageobjectsforlesson5 extends TestBase {
     void successfulRegistrationTest(){
         String userName = "Alex";
         String lastName = "Fadeev";
-        String eMail = "Alexs@mail.ru";
-        String gEnder = "Male";
-        String nPhone = "8926012345";
+        String email = "Alexs@mail.ru";
+        String gender = "Male";
+        String phone = "8926012345";
+        String day = "30";
+        String month = "January";
+        String year = "2007";
+        String sub = "Math";
+        String hob = "Music";
+        String image = "img/2.png";
+        String add = "Baker Street";
+        String state = "NCR";
+        String city = "Gurgaon";
 
         registrationPage.openPage()
-                    .setFirstName(userName)
-                    .setLastName(lastName)
-                    .setEmail(eMail)
-                    .setGender(gEnder)
-                    .setPhone(nPhone)
-                    .setbirthDate("30", "January", "2007");
-
-
-        $("#subjectsInput").setValue("Math").pressEnter();
-
-        $("#hobbiesWrapper").$(byText("Music")).click();
-
-        $("#uploadPicture").uploadFromClasspath("img/2.png");
-
-        $("#currentAddress").setValue("Baker Street");
-
-        $("#state").click();
-        $("#stateCity-wrapper").$(byText("NCR")).click();
-        $("#city").click();
-        $("#stateCity-wrapper").$(byText("Gurgaon")).click();
-        $("#submit").click();
+                    .setFirstLastName(userName, lastName)
+                    .setEmail(email)
+                    .setGender(gender)
+                    .setPhone(phone)
+                    .setbirthDate(day, month, year)
+                    .subjects(sub)
+                    .hobbies(hob)
+                    .picture(image)
+                    .address(add)
+                    .stateAndCity(state, city);
 
         registrationPage.verifyResultsModelAppears()
                 .verifyResult("Student Name", userName + " " + lastName)
-                .verifyResult("Student Email", eMail)
-                .verifyResult("Gender", gEnder)
-                .verifyResult("Mobile", nPhone)
+                .verifyResult("Student Email", email)
+                .verifyResult("Gender", gender)
+                .verifyResult("Mobile", phone)
                 .verifyResult("Date of Birth", "30 January,2007");
 
 

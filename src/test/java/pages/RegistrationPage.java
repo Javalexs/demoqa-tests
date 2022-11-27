@@ -26,12 +26,8 @@ public class RegistrationPage {
 
     }
 
-    public RegistrationPage setFirstName(String name){
+    public RegistrationPage setFirstLastName(String name, String surname ){
         firstNameInput.setValue(name);
-        return this;
-    }
-
-    public RegistrationPage setLastName(String surname) {
         lastNameInput.setValue(surname);
         return this;
     }
@@ -53,6 +49,34 @@ public class RegistrationPage {
     public RegistrationPage setbirthDate(String day, String month, String year){
         $("#dateOfBirthInput").click();
         calendarComponent.setDate(day, month, year);
+        return this;
+    }
+    public RegistrationPage subjects(String sub) {
+        $("#subjectsInput").setValue(sub).pressEnter();
+        return this;
+    }
+
+    public RegistrationPage hobbies (String hob){
+        $("#hobbiesWrapper").$(byText(hob)).click();
+        return this;
+    }
+
+    public RegistrationPage stateAndCity(String state, String city){
+        $("#state").click();
+        $("#stateCity-wrapper").$(byText(state)).click();
+        $("#city").click();
+        $("#stateCity-wrapper").$(byText(city)).click();
+        $("#submit").click();
+        return this;
+    }
+
+    public RegistrationPage picture(String image){
+        $("#uploadPicture").uploadFromClasspath(image);
+        return this;
+    }
+
+    public RegistrationPage address (String add){
+        $("#currentAddress").setValue(add);
         return this;
     }
 
