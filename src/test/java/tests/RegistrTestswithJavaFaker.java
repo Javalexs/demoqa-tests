@@ -1,27 +1,37 @@
 package tests;
 
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
-public class RegistrTestspageobjectsforlesson5 extends TestBase {
+import java.util.Locale;
+import java.util.Random;
+
+import static pages.component.DatefromJavaFaker.*;
+
+
+public class RegistrTestswithJavaFaker extends TestBase {
+
 
     @Test
     void successfulRegistrationTest(){
-        String userName = "Alex";
-        String lastName = "Fadeev";
-        String email = "Alexs@mail.ru";
-        String gender = "Male";
-        String phone = "8926012345";
-        String day = "30";
-        String month = "January";
-        String year = "2007";
-        String sub = "Math";
-        String hob = "Music";
+
+        Faker faker = new Faker();
+        Random random = new Random();
+//
+        String userName = getUserNameFaker(faker);
+        String lastName = getLastNameFaker(faker);
+        String email = getEmailFaker(faker);
+        String gender = getGenderFaker(faker);
+        String phone = getPhoneFaker(faker);
+        String day = getDayFaker(setDateFaker(faker));
+        String month = getMonthFaker(setDateFaker(faker));
+        String year = getYearFaker(setDateFaker(faker));
+        String sub = getSub(random);
+        String hob = getHob(random);
         String image = "img/2.png";
-        String add = "Baker Street";
-        String state = "NCR";
-        String city = "Gurgaon";
+        String add = getAdd(faker);
+        String state = getState(random);
+        String city = getCity(state, random);
 
         registrationPage.openPage()
                     .setFirstLastName(userName, lastName)
@@ -49,4 +59,6 @@ public class RegistrTestspageobjectsforlesson5 extends TestBase {
 
 
     }
+
+
 }

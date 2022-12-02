@@ -88,6 +88,4 @@ public class RegistrationPage {
         registrationResultModal.verifyResult(key, value);
         return this;
     }
-
-
 }
