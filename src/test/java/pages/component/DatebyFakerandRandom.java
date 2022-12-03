@@ -5,7 +5,7 @@ import com.github.javafaker.Faker;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class DatefromJavaFaker {
+public class DatebyFakerandRandom {
     public static String getUserNameFaker(Faker faker) {
         return faker.name().firstName();
     }
