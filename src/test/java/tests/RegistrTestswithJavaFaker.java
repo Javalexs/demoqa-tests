@@ -3,10 +3,9 @@ package tests;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 
-import java.util.Locale;
 import java.util.Random;
 
-import static pages.component.DatefromJavaFaker.*;
+import static pages.component.DatebyFakerandRandom.*;
 
 
 public class RegistrTestswithJavaFaker extends TestBase {
